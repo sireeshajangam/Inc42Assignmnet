@@ -22,7 +22,7 @@ jobs:
     - name: Install WordPress Coding Standards
       run: |
         composer global require wp-coding-standards/wpcs
-        composer global config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
+        composer global config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true || true
 
     - name: Run PHPCS
       run: phpcs --standard=WordPress ./wordpress-blog
