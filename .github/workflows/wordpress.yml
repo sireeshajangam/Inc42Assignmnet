@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ] # Trigger on pushes to main and feature branches
     paths:
-      - 'wordpress-blog/**' # Trigger only when changes occur in the wordpress-blog directory
+      - 'wordpress-blog/**' # Trigger only when changes occur in the wordpress directory
 
 jobs:
   build:
@@ -20,9 +20,7 @@ jobs:
         php-version: '7.4'
 
     - name: Install WordPress Coding Standards
-      run: composer global require squizlabs/php_codesniffer
+      run: composer global require wp-coding-standards/wpcs
 
     - name: Run PHPCS
       run: phpcs --standard=WordPress ./wordpress-blog
-
-    # Add additional steps for unit tests or other checks as needed
