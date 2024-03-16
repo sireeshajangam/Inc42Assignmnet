@@ -1,0 +1,29 @@
+name: Next.js Frontend CI
+
+on:
+  push:
+    branches: [ main ] # Trigger on pushes to main and feature branches
+    paths:
+      - 'nextjs-frontend/**' # Trigger only when changes occur in the frontend directory
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v2
+
+    - name: Set up Node.js
+      uses: actions/setup-node@v2
+      with:
+        node-version: '14'
+
+    - name: Install dependencies
+      run: npm install
+
+    - name: Run linting
+      run: npm run lint
+
+    - name: Run unit tests
+      run: npm test
