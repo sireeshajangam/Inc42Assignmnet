@@ -1,4 +1,4 @@
-name: Go Backend CI # CI CD workflows
+name: Go Backend CI
 
 on:
   push:
@@ -18,6 +18,9 @@ jobs:
       uses: actions/setup-go@v2
       with:
         go-version: 1.16
+
+    - name: Initialize Go module
+      run: go mod init myapp/go-backend
 
     - name: Install dependencies
       run: go mod download

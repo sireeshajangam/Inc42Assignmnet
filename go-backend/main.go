@@ -1,5 +1,5 @@
 // go-backend/main.go
-//example
+//exam
 package main
 
 import (
