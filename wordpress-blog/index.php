@@ -1,6 +1,6 @@
 <?php
 // wordpress-blog/index.php
-//example
+//exampless
 get_header();
 
 if (have_posts()) :
