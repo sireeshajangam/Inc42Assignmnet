@@ -24,7 +24,8 @@ jobs:
         run: npm install
 
       - name: Run linting
-        run: npx eslint ./pages
+        run: npx eslint ./nextjs-frontend/pages
+
 
       - name: Run unit tests
         run: npm test
