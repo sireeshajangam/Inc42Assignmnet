@@ -2,9 +2,9 @@ name: Next.js Frontend CI
 
 on:
   push:
-    branches: [main]
+    branches: [ main ] 
     paths:
-      - 'nextjs-frontend/**' # Trigger only when changes occur in the frontend directory
+      - 'nextjs-frontend/**' 
 
 jobs:
   build:
