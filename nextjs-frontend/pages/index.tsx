@@ -1,4 +1,5 @@
 // nextjs-frontend/pages/index.tsx
+//example
 
 import React from 'react';
 import styled from 'styled-components';
