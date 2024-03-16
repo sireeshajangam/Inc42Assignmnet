@@ -4,7 +4,7 @@ on:
   push:
     branches: [ main ] # Trigger on pushes to main and feature branches
     paths:
-      - 'wordpress-blog/**' # Trigger only when changes occur in the wordpress directory
+      - 'wordpress-blog/**' # Trigger only when changes occur in the wordpress-blog directory
 
 jobs:
   build:
