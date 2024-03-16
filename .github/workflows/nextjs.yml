@@ -2,9 +2,7 @@ name: Next.js Frontend CI
 
 on:
   push:
-    branches: [ main ] # Trigger on pushes to main and feature branches
-    paths:
-      - 'nextjs-frontend/**' # Trigger only when changes occur in the frontend directory
+    branches: [ main ] # Trigger on pushes to main branch
 
 jobs:
   build:
@@ -22,9 +20,10 @@ jobs:
     - name: Navigate to frontend directory
       run: cd nextjs-frontend
 
-
     - name: Install dependencies
-      run: npm install
+      run: |
+        npm install
+        npm install eslint eslint-config-next --save-dev
 
     - name: Run linting
       run: npm run lint
