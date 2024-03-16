@@ -2,9 +2,9 @@ name: WordPress PHP CI
 
 on:
   push:
-    branches: [ main ] # Trigger on pushes to main and feature branches
+    branches: [main] 
     paths:
-      - 'wordpress-blog/**' # Trigger only when changes occur in the wordpress directory
+      - 'wordpress-blog/**' 
 
 jobs:
   build:
@@ -20,7 +20,11 @@ jobs:
         php-version: '7.4'
 
     - name: Install WordPress Coding Standards
-      run: composer global require wp-coding-standards/wpcs
+      run: |
+        composer global require wp-coding-standards/wpcs
+        composer global config --no-plugins allow-plugins.dealerdirect/phpcodesniffer-composer-installer true
 
     - name: Run PHPCS
       run: phpcs --standard=WordPress ./wordpress-blog
+
+    # Add additional steps for unit tests or other checks as needed
