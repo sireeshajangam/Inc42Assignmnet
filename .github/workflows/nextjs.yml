@@ -20,7 +20,7 @@ jobs:
         node-version: '14'
 
     - name: Navigate to frontend directory
-      run: cd nextjs-frontend/
+      run: cd .
 
     - name: Install dependencies
       run: npm install
