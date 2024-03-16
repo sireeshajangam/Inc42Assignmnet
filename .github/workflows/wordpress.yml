@@ -1,30 +1,38 @@
-name: WordPress PHP CI
+name: WordPress Coding Standards
 
 on:
   push:
-    branches: [main] 
+    branches: [ main ]  # Trigger the workflow on push events to the main branch
     paths:
-      - 'wordpress-blog/**' 
+      - 'wordpress-blog/**'  # Trigger only when changes occur in the wordpress-blog directory
 
 jobs:
-  build:
+  setup-php:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
     - name: Set up PHP
       uses: shivammathur/setup-php@v2
       with:
         php-version: '7.4'
 
+  install-phpcs:
+    needs: setup-php
+    runs-on: ubuntu-latest
+    steps:
+    - name: Install PHP_CodeSniffer
+      run: composer global require "squizlabs/php_codesniffer=*"
+
+  install-wpcs:
+    needs: install-phpcs
+    runs-on: ubuntu-latest
+    steps:
     - name: Install WordPress Coding Standards
-      run: |
-        composer global require wp-coding-standards/wpcs
-        ~/.composer/vendor/bin/phpcs --config-set installed_paths /home/runner/.composer/vendor/wp-coding-standards/wpcs
+      run: composer global require "wp-coding-standards/wpcs:*"
 
-    - name: Run PHPCS
-      run: ~/.composer/vendor/bin/phpcs --standard=WordPress ./wordpress-blog
+  phpcs-check:
+    needs: install-wpcs
+    runs-on: ubuntu-latest
+    steps:
+    - name: Check PHP files using WordPress Coding Standards
+      run: phpcs --standard=WordPress wordpress-blog
 
-    # Add additional steps for unit tests or other checks as needed
