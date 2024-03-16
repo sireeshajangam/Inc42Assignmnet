@@ -1,7 +1,7 @@
 <?php
 // wordpress-blog/functions.php
 
-// Custom function to enqueue styles and scripts
+// Custom function to enqueue styles and scriptss
 function myapp_enqueue_scripts() {
 	// Enqueue styles
 	wp_enqueue_style('myapp-styles', get_stylesheet_uri());
