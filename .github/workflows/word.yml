@@ -1,0 +1,32 @@
+name: WordPress CI
+
+on:
+  push:
+    paths:
+      - 'myapp/wordpress/**' # Adjust the path according to your folder structure
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        path: myapp
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '7.4'
+
+      - name: Install PHPUnit
+        run: composer require phpunit/phpunit
+        working-directory: myapp/wordpress
+
+      - name: Run unit tests
+        run: phpunit tests/unit
+        working-directory: myapp/wordpress
+
+      - name: Run integration tests
+        run: phpunit tests/integration
+        working-directory: myapp/wordpress

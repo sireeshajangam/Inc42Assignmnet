@@ -1,36 +1,32 @@
-name: Go Backend CI
+name: Backend CI
 
 on:
   push:
-    branches: [ main ] # Trigger on pushes to main and feature branches
     paths:
-      - 'go-backend/**' # Trigger only when changes occur in the backend directory
-
+      - 'myapp/backend/**' # Adjust the path according to your folder structure
+  
 jobs:
   build:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
+      - name: Checkout code
+        uses: actions/checkout@v2
+        path: myapp
 
-    - name: Set up Go
-      uses: actions/setup-go@v2
-      with:
-        go-version: 1.16
+      - name: Setup Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.17'
 
-    - name: Initialize Go module
-      run: go mod init myapp/go-backend
+      - name: Install dependencies
+        run: go mod download
+        working-directory: myapp/backend
 
-    - name: Install golangci-lint
-      run: |
-        GO111MODULE=on go get github.com/golangci/golangci-lint/cmd/golangci-lint@v1.42.1
+      - name: Run unit tests
+        run: go test ./tests/unit/...
+        working-directory: myapp/backend
 
-    - name: Install dependencies
-      run: go mod download
-
-    - name: Run linting
-      run: golangci-lint run ./...
-
-    - name: Run unit tests
-      run: go test -v ./...
+      - name: Run integration tests
+        run: go test ./tests/integration/...
+        working-directory: myapp/backend

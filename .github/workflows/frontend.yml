@@ -1,0 +1,34 @@
+name: Frontend CI
+
+on:
+  push:
+    paths:
+      - 'myapp/frontend/**' # Adjust the path according to your folder structure
+   # Adjust the path according to your folder structure
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        path: myapp
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+        working-directory: myapp/frontend
+
+      - name: Install dependencies
+        run: npm install
+        working-directory: myapp/frontend
+
+      - name: Run unit tests
+        run: npm test
+        working-directory: myapp/frontend
+
+      - name: Run integration tests
+        run: npm run test:integration
+        working-directory: myapp/frontend
