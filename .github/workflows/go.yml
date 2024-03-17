@@ -3,7 +3,7 @@ name: Backend CI
 on:
   push:
     paths:
-      - 'myapp/backend/**' # Adjust the path according to your folder structure
+      - 'backend/**' # Adjust the path according to your folder structure
   
 jobs:
   build:
