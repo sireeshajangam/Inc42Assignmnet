@@ -3,8 +3,8 @@ name: Backend CI
 on:
   push:
     paths:
-      - 'backend/**' # Adjust the path according to your folder structure
-  
+      - 'backend/**'
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -21,12 +21,12 @@ jobs:
 
       - name: Install dependencies
         run: go mod download
-        working-directory: myapp/backend
+        working-directory: backend
 
       - name: Run unit tests
         run: go test ./tests/unit/...
-        working-directory: myapp/backend
+        working-directory: backend
 
       - name: Run integration tests
         run: go test ./tests/integration/...
-        working-directory: myapp/backend
+        working-directory: backend
