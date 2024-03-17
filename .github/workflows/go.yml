@@ -13,6 +13,9 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v2
       
+      - name: Initialize Go modules
+        run: go mod init example.com/myapp/backend
+        working-directory: backend
 
       - name: Setup Go
         uses: actions/setup-go@v2
@@ -20,13 +23,12 @@ jobs:
           go-version: '1.17'
 
       - name: Install dependencies
-        run: go mod download
-        working-directory: backend
+        run: |
+          go mod download
+          go get github.com/stretchr/testify/assert
 
       - name: Run unit tests
-        run: go test ./tests/unit/...
-        working-directory: backend
+        run: go test ./backend/tests/unit/...
 
       - name: Run integration tests
-        run: go test ./tests/integration/...
-        working-directory: backend
+        run: go test ./backend/tests/integration/...
