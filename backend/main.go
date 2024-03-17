@@ -1,4 +1,4 @@
-package main    //exam
+package main    //example
 
 import (
 	"encoding/json"
