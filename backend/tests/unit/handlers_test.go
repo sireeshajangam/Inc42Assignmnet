@@ -1,3 +1,5 @@
+// backend/tests/unit/handlers_test.go
+
 package unit
 
 import (
@@ -6,7 +8,7 @@ import (
 	"testing"
 
 	"github.com/stretchr/testify/assert"
-	"yourappname/api"
+	"example.com/myapp/backend"
 )
 
 func TestGetPostsHandler(t *testing.T) {
@@ -16,7 +18,7 @@ func TestGetPostsHandler(t *testing.T) {
 	}
 
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(api.GetPostsHandler)
+	handler := http.HandlerFunc(backend.GetPostsHandler)
 
 	handler.ServeHTTP(rr, req)
 
